@@ -11,5 +11,8 @@ else:
     if minutos_gastos <= 400:
         preco = 0.18
     else:
-        preco = 0.15
+        if minutos_gastos <= 800:
+            preco = 0.15
+        else:
+            preco = 0.08
 print('Total a pagar R$ %6.2f' % (minutos_gastos*preco))
