@@ -7,12 +7,10 @@ minutos_gastos = int(
     input('Insira a quantidade de minutos utilizads esse mes: '))
 if minutos_gastos < 200:
     preco = 0.2
+elif minutos_gastos <= 400:
+    preco = 0.18
+elif minutos_gastos <= 800:
+    preco = 0.15
 else:
-    if minutos_gastos <= 400:
-        preco = 0.18
-    else:
-        if minutos_gastos <= 800:
-            preco = 0.15
-        else:
-            preco = 0.08
+    preco = 0.08
 print('Total a pagar R$ %6.2f' % (minutos_gastos*preco))
