@@ -10,7 +10,7 @@ while i < 10:
     l = input('Digite uma letra minuscula: ')
     vetor.append(l)
     i += 1
-    if letra not in 'aeiou':
+    if l.lower() not in 'aeiou':
         consoantes += 1
 
 print('Numero de consoantes:', consoantes)
