@@ -5,11 +5,11 @@
  leia um número inteiro calcule o seu número de Fibonacci. F1 = 1, F2 = 1, F3 = 2, etc.
 '''
 
-fibo = [1, 1]
 n = int(input('Digite um número: '))
-x = 2
-while x < n:
-    fibo.append(fibo[x-1]+fibo[x-2])
+a = b = 1
+x = 1
+while x <= n-2:
+    a, b = b, a+b
     x += 1
 
-print('O número Fibonacci de %d é: %d' % (n, fibo[-1]))
+print('Fibonacci(%d) = %d' % (n, b))
