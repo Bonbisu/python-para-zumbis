@@ -25,7 +25,7 @@ hqlgx tdbsgf fkmrtn frskk qjvg jlhpgh rxrmqp nmc dxpx lljs kszjq hlxx nbkvsrf dg
 nlvgr zldk tvphkg hlnls wlsxsvf mmksm lzgfnkmg tbw nrpzqfr gfc sxcdqtlt rmmhtmbp jkk
 fdh jcw nwjjkrdq kztrcqxt lphf frs dcsbhwp tgnq lmq tpppxf vmd tnbqgv xxtlt ljdz hdslhv
 dkzxctcn qsfctn tdsbdhv dxmkk ghfntj dckqls knlwvk mrddntg fwqwfxs tzqcvz sbnfjs kcxl
-dsgnhsf kgj mfm vjmmf wptc rtb dtblv frp wwmngbk dxss txz fzlxll lbqjrp hhcxnnhn 
+dsgnhsf kgj mfm vjmmf wptc rtb dtblv frp wwmngbk dxss txz fzlxll lbqjrp hhcxnnhn
 skhcwxw lllkssb dgwd lzq czhhtclr bpngkf krh bzccxd rqkr mdz phk dfctpgr gkt bdnfbh wlj
 lfhkmb crbhzfs qzz jbmlsfkx htkmdbx mxjccgv fpj ttl jbw pmnt khqr jhztz dvmj kwchwcv
 xggzgkln dxz fdsfsc cgpn pphslgf jxsd fsp spzzbc trvpx wjg nmdzgmnr qslm znngdwb zqwb
@@ -130,3 +130,58 @@ def get_verbos(lista_texto):
 verbos, ppessoa = get_verbos(txtB)
 print(len(verbos))
 print(len(ppessoa))
+
+
+def alfabetiza(texto, ordem='ftczmbshjpnwlrxkqvdg'):
+    alfaA = []
+    for p in texto:
+        alfa = ''
+        for l in p:
+            alfa += chr(ordem.find(l) + 65)
+        alfaA.append(alfa)
+    return alfaA
+
+
+def fatecza(texto, ordem='ftczmbshjpnwlrxkqvdg'):
+    fatecA = []
+    for p in texto:
+        fatec = ''
+        for l in p:
+            fatec += ordem[ord(l)-65]
+        fatecA.append(fatec)
+    return fatecA
+
+
+em_ordem_alfa = sorted(alfabetiza(txtB))
+em_ordem_fatec = fatecza(em_ordem_alfa)
+print(em_ordem_fatec)
+
+
+def to_number(ftc_num, ordem='ftczmbshjpnwlrxkqvdg'):
+    i = 0
+    soma = 0
+    for l in ftc_num:
+        soma += ordem.find(l)*(20**i)
+        i += 1
+    return soma
+
+
+def is_distinct(num):
+    for n in str(num):
+        dig = str(num).count(n)
+        if dig > 1:
+            return False
+    return True
+
+
+def is_magic(texto):
+    magicos = []
+    for p in texto:
+        num = to_number(p)
+        if num % 42 == 0 and is_distinct(p):
+            magicos.append(p)
+    return magicos
+
+
+b = is_magic(txtB)
+print(len(b), b)
