@@ -9,6 +9,7 @@
 
 
 def dormir(dia_semana, feriado):
+    return not dia_semana or feriado
     if feriado or not dia_semana:
         return True
     return False
@@ -21,6 +22,7 @@ def dormir(dia_semana, feriado):
 
 
 def alunos_problema(a_sorri, b_sorri):
+    return a_sorri == b_sorri
     if a_sorri ^ b_sorri:
         return False
     return True
@@ -33,6 +35,7 @@ def alunos_problema(a_sorri, b_sorri):
 
 
 def soma_dobro(a, b):
+    return 2*(a+b) if a == b else a+b
     if a == b:
         return (a+b)*2
     return a+b
@@ -46,6 +49,7 @@ def soma_dobro(a, b):
 
 
 def diff21(n):
+    return 2*abs(n-21) if n > 21 else abs(n-21)
     x = n-21
     if x < 0:
         x = x*(-1)  # valor absoluto
@@ -61,6 +65,7 @@ def diff21(n):
 
 
 def papagaio(falando, hora):
+    return falando and not (7 <= hora <= 20)
     if falando and not (7 <= hora <= 20):
         return True
     return False
@@ -71,9 +76,8 @@ def papagaio(falando, hora):
 
 
 def dez(a, b):
-    if a == 10 or b == 10:
-        return True
-    elif a+b == 10:
+    return a == 10 or b == 10 or a+b == 10
+    if a == 10 or b == 10 or a+b == 10:
         return True
     return False
 
@@ -87,6 +91,7 @@ def dez(a, b):
 
 
 def dista10(n):
+    return abs(n-100) <= 10 or abs(n-200) <= 10
     y = 100
     for i in range(2):
         x = y-n
@@ -118,6 +123,7 @@ def apaga(s, n):
 
 
 def troca(s):
+    return s if len(s) <= 1 else s[-1]+s[1:-1]+s[0]
     if len(s) <= 1:
         return s
     return s[-1] + s[1:-1] + s[0]

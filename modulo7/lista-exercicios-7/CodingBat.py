@@ -17,6 +17,7 @@ def multstring(s, n):
 
 
 def string_splosion(s):
+    return ''.join([s[:i] for i in range(len(s)+1)])
     new_s = ''
     for i in range(len(s)+1):
         new_s += s[:i]
@@ -27,6 +28,7 @@ def string_splosion(s):
 
 
 def array_count9(nums):
+    return nums.count(9)
     cnt = 0
     for i in nums:
         if 9 == i:
@@ -41,6 +43,7 @@ def array_count9(nums):
 
 
 def array_front9(nums):
+    return 9 in nums[:4]
     if 9 in nums[:4]:
         return True
     return False
@@ -53,6 +56,7 @@ def array_front9(nums):
 
 
 def hello_name(name):
+    return 'Hello %s!' % name
     hello = 'Hello %s!' % name
     return hello
 
@@ -62,8 +66,9 @@ def hello_name(name):
 # make_tags('cite', 'Yay'), '<cite>Yay</cite>'
 
 
-def make_tags(tab, word):
-    tag = '<%s>' % tab
+def make_tags(tag, word):
+    return '<%s>%s</%s>' % (tag, word, tag)
+    tag = '<%s>' % tag
     tag = tag+word+tag[0]+'/'+tag[1:]
     return tag
 
@@ -76,6 +81,7 @@ def make_tags(tab, word):
 
 
 def extra_end(s):
+    return 3*s[-2:]
     if len(s) >= 2:
         end = s[-2:]*3
         return end
@@ -90,7 +96,7 @@ def extra_end(s):
 
 
 def first_half(s):
-    return s[:int(len(s)/2)]
+    return s[:len(s)//2]  # // é a divisão inteira
 
 # I. sem_pontas
 # seja uma string s de pelo menos dois caracteres
@@ -111,7 +117,7 @@ def sem_pontas(s):
 
 
 def roda2(s):
-    return s[2:]+s[0:2]
+    return s[2:]+s[:2]
 
 
 # Provided simple test() function used in main() to print
