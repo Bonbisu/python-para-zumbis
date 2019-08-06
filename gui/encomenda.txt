@@ -1,0 +1,11 @@
+Destino: São Paulo
+Descrição: Encomenta da China
+Endereço: Rua da Minha Casa, Sem Número
+CEP l4D3C4S4
+Bairro Vizinhança
+
+Destino: São Paulo
+Descrição: DropDown
+Endereço: Teste de Menu
+
+
