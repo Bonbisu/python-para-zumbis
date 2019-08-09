@@ -30,7 +30,7 @@ def lone_sum(a, b, c):
     return a + b + c
 
 
-# C. luck_sum
+# C. luck_sum    return [True if nums[i] == 2 and nums[i+1] == 2 else False for i in range(len(nums)-1)]
 # Soma três inteiros a, b, c
 # Se aparecer um 13 ele não conta e todos os da sua direita também
 # lucky_sum(1, 2, 3) -> 6
@@ -80,8 +80,11 @@ def cat_dog(s):
 # count_code('codexxcode') -> 2
 # count_code('cozexxcope') -> 2
 def count_code(s):
-    return s.count('co\*e')
-
+    cont = 0
+    for i in range(len(s)-3):
+        if s[i:i+2] == 'co' and s[i+3] == 'e':
+            cont += 1
+    return cont
 
 # H. end_other
 # as duas strings devem ser convertidas para minúsculo via lower()
@@ -90,8 +93,15 @@ def count_code(s):
 # end_other('Hiabc', 'abc') -> True
 # end_other('AbC', 'HiaBc') -> True
 # end_other('abc', 'abXabc') -> True
+
+
 def end_other(a, b):
-    return
+    a, b = a.lower(), b.lower()
+    return a.endswith(b) or b.endswith(a)
+
+    if len(a) <= len(b):
+        return a == b[-len(a):]
+    return b == a[-len(b):]
 
 
 # I. count_evens
@@ -100,7 +110,7 @@ def end_other(a, b):
 # count_evens([2, 2, 0]) -> 3
 # count_evens([1, 3, 5]) -> 0
 def count_evens(nums):
-    return
+    return len([x for x in nums if x % 2 == 0])
 
 
 # J. sum13
@@ -111,7 +121,15 @@ def count_evens(nums):
 # sum13([1, 2, 2, 1, 13]) -> 6
 # sum13([13, 1, 2, 3, 4]) -> 0
 def sum13(nums):
-    return
+    if 13 in nums:
+        return sum(nums[:nums.index(13)])
+    return sum(nums)
+
+    if 13 in nums:
+        for i in range(len(nums)):
+            if nums[i] == 13:
+                return sum(nums[:i])
+    return sum(nums)
 
 
 # K. has22
@@ -120,7 +138,10 @@ def sum13(nums):
 # has22([1, 2, 1, 2]) -> False
 # has22([2, 1, 2]) -> False
 def has22(nums):
-    return
+    for i in range(len(nums)-1):
+        if nums[i] == 2 and nums[i+1] == 2:
+            return True
+    return False
 
 
 # L. soma_na_lista
@@ -132,8 +153,13 @@ def has22(nums):
 # soma_na_lista(4, [2, 2, 2, 2]) -> False
 # soma_na_lista(4, [2, 2, 1, 3]) -> True
 def soma_na_lista(n, lista):
-    return
+    return n in [x+y for x in lista for y in lista if x != y]
 
+    for x in lista:
+        for y in lista:
+            if x+y == n and x != y:
+                return True
+    return False
 
 # M.Difícil: Fila de tijolos sem usar loops
 # queremos montar uma fila de tijolos de um tamanho denominado meta
@@ -143,8 +169,10 @@ def soma_na_lista(n, lista):
 # fila_tijolos(3, 1, 8) -> True
 # fila_tijolos(3, 1, 9) -> False
 # fila_tijolos(3, 2, 10) -> True
+
+
 def fila_tijolos(n_peq, n_gra, meta):
-    return
+    return n_peq >= meta % 5 and n_peq+5*n_gra >= meta
 
 
 # Provided simple test() function used in main() to print
@@ -260,10 +288,8 @@ def main():
     test(count_code('AAcodeBBcoleCCccorfDD'), 2)
     test(count_code('coAcodeBcoleccoreDD'), 3)
 
-
-'''
-    print ()
-    print ('End_other')
+    print()
+    print('End_other')
     test(end_other('Hiabc', 'abc'), True)
     test(end_other('AbC', 'HiaBc'), True)
     test(end_other('abc', 'abXabc'), True)
@@ -279,8 +305,8 @@ def main():
     test(end_other('ab', 'ab12'), False)
     test(end_other('ab', '12ab'), True)
 
-    print ()
-    print ('Count_evens')
+    print()
+    print('Count_evens')
     test(count_evens([2, 1, 2, 3, 4]), 3)
     test(count_evens([2, 2, 0]), 3)
     test(count_evens([1, 3, 5]), 0)
@@ -290,8 +316,8 @@ def main():
     test(count_evens([2]), 1)
     test(count_evens([2, 5, 12]), 2)
 
-    print ()
-    print ('Sum13')
+    print()
+    print('Sum13')
     test(sum13([1, 2, 2, 1]), 6)
     test(sum13([1, 1]), 2)
     test(sum13([1, 2, 2, 1, 13]), 6)
@@ -307,8 +333,8 @@ def main():
     test(sum13([0]), 0)
     test(sum13([13, 0]), 0)
 
-    print ()
-    print ('Has22')
+    print()
+    print('Has22')
     test(has22([1, 2, 2]), True)
     test(has22([1, 2, 1, 2]), False)
     test(has22([2, 1, 2]), False)
@@ -324,8 +350,8 @@ def main():
     test(has22([3, 3, 2, 2]), True)
     test(has22([5, 2, 5, 2]), False)
 
-    print ()
-    print ('Soma na lista')
+    print()
+    print('Soma na lista')
     test(soma_na_lista(5, [1, 2, 3, 4]), True)
     test(soma_na_lista(9, [1, 2, 3, 4]), False)
     test(soma_na_lista(0, [1, 2, 3, 4]), False)
@@ -334,8 +360,8 @@ def main():
     test(soma_na_lista(4, [2, 2, 1, 3]), True)
     test(soma_na_lista(42, [40, 2, 3, 39]), True)
 
-    print ()
-    print ('Fila de Tijolos')
+    print()
+    print('Fila de Tijolos')
     test(fila_tijolos(3, 1, 8), True)
     test(fila_tijolos(3, 1, 9), False)
     test(fila_tijolos(3, 2, 10), True)
@@ -356,6 +382,7 @@ def main():
     test(fila_tijolos(1000000, 1000, 1000100), True)
     test(fila_tijolos(2, 1000000, 100003), False)
     test(fila_tijolos(12, 2, 21), True)
-'''
+
+
 if __name__ == '__main__':
     main()
