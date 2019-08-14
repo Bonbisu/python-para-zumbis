@@ -28,7 +28,11 @@ def verbing(s):
 
 
 def not_bad(s):
-    return
+    snot, sbad = s.find('not'), s.find('bad')
+    if sbad > snot:
+        return s[:snot] + 'good' + s[sbad+3:]
+    return s
+
 
 # I. inicio_final
 # Divida cada string em dois pedaços.
@@ -40,7 +44,12 @@ def not_bad(s):
 
 
 def inicio_final(a, b):
-    return
+    meio = {}
+    meio[a], meio[b] = len(a) // 2, len(b) // 2
+    for m in meio.keys():
+        if len(m) % 2 == 1:
+            meio[m] += 1
+    return a[:meio[a]] + b[:meio[b]] + a[meio[a]:] + b[meio[b]:]
 
 # J. zeros finais
 # Verifique quantos zeros há no final de um número inteiro positivo
@@ -48,14 +57,26 @@ def inicio_final(a, b):
 
 
 def zf(n):
-    return
+    cnt = 0
+    for i in range(1, len(str(n))):
+        if str(n)[i*(-1)] == '0':
+            cnt += 1
+        else:
+            return cnt
+
 # K. conta 2
 # Verifique quantas vezes o dígito 2 aparece entre 0 e n-1
 # Exemplo: para n = 20 o dígito 2 aparece duas vezes entre 0 e 19
 
 
 def conta2(n):
-    return
+    return sum([str(x).count('2') for x in range(n)])
+    cnt = 0
+    for n in range(n):
+        cnt += str(n).count('2')
+    return cnt
+
+
 # L. inicio em potencia de 2
 # Dado um número inteiro positivo n retorne a primeira potência de 2
 # que tenha o início igual a n
@@ -63,7 +84,11 @@ def conta2(n):
 
 
 def inip2(n):
-    return
+    return [x for x in range(1000) if str(2**x)[:len(str(n))] == str(n)][0]
+    for x in range(1000):
+        if str(2**x)[:len(str(n))] == str(n):
+            return x
+    return False
 
 
 def test(obtido, esperado):
@@ -81,8 +106,6 @@ def main():
     test(verbing('swiming'), 'swimingly')
     test(verbing('do'), 'do')
 
-
-'''
     print()
     print('not_bad')
     test(not_bad('This movie is not so bad'), 'This movie is good')
@@ -113,6 +136,6 @@ def main():
     test(inip2(133), 316)
     test(inip2(1024), 10)
 
-'''
+
 if __name__ == '__main__':
     main()
