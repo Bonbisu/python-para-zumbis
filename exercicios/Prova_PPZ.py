@@ -154,7 +154,7 @@ def date_fashion(eu, par):
 # squirrel_play(95, False) -> False
 # squirrel_play(95, True) -> True
 def squirrel_play(temp, is_summer):
-    return
+    return 60 <= temp <= 100 if is_summer else 60 <= temp <= 90
 
 
 # pego_correndo
@@ -171,7 +171,13 @@ def squirrel_play(temp, is_summer):
 # pego_correndo(65, False) -> 1
 # pego_correndo(65, True) -> 0
 def pego_correndo(speed, is_birthday):
-    return
+    if is_birthday:
+        speed -= 5
+    if speed <= 60:
+        return 0
+    elif 60 <= speed <= 80:
+        return 1
+    return 2
 
 
 # count_code
@@ -182,8 +188,8 @@ def pego_correndo(speed, is_birthday):
 # count_code('codexxcode') -> 2
 # count_code('cozexxcope') -> 2
 def count_code(s):
-    return
-
+    return sum(
+        [1 for n in range(len(s) - 3) if s[n:n + 2] + s[n + 3] == 'coe'])
 
 # Fila de tijolos sem usar loops
 # queremos montar uma fila de tijolos de um tamanho denominado meta
