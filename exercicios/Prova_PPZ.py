@@ -18,17 +18,23 @@
 # para responder, portanto  talvez a resposta não seja imediata, aguarde,
 # por favor. Novamente boa sorte e bom aprendizado!
 
+
 # alô_mundo
 # retorne 'Alô Mundo' para não ficar com zero na provinha
 def alô_mundo():
-  return 
+    return 'Alô Mundo'
+
 
 # chinês
 # converta uma string msg para chinês
 # para isso faça um deslocamento de 30000 em cada caracter
 # chinês('Zumbi') -> '疊疥疝疒疙'
 def chinês(msg):
-  return 
+    s = ''
+    for c in msg:
+        s += chr(ord(c) + 30000)
+    return s
+
 
 # anagrama
 # verifique se duas strings s1 e s2 são anagramas
@@ -37,7 +43,9 @@ def chinês(msg):
 # anagrama('asa', 'assa') -> False
 # é possível uma solução com uma única linha
 def anagrama(s1, s2):
-  return 
+    return sum([False if i not in s2 else True
+                for i in s1]) == len(s1) and len(s1) == len(s2)
+
 
 # loja_tinta
 # suponha que uma lata pinte 54 metros quadrados
@@ -48,7 +56,8 @@ def anagrama(s1, s2):
 # loja_tinta(108) -> 2
 # loja_tinta(109) -> 3
 def loja_tinta(m):
-  return
+    return m // 54 + 1 if m % 54 != 0 else m // 54
+
 
 # alunos_problema
 # temos dois alunos a e b
@@ -57,7 +66,8 @@ def loja_tinta(m):
 # não estão sorrindo
 # retorne True quando houver problemas
 def alunos_problema(a_sorri, b_sorri):
-  return 
+    return a_sorri == b_sorri
+
 
 # papagaio
 # temos um papagaio que fala alto
@@ -65,7 +75,8 @@ def alunos_problema(a_sorri, b_sorri):
 # temos problemas se o papagaio estiver falando
 # antes da 7 ou depois das 20
 def papagaio(falando, hora):
-  return 
+    return falando and (hora < 7 or hora > 20)
+
 
 # apaga
 # seja uma string s e um inteiro n
@@ -73,7 +84,8 @@ def papagaio(falando, hora):
 # apaga('kitten', 1) -> 'ktten'
 # apaga('kitten', 4) -> 'kittn'
 def apaga(s, n):
-  return 
+    return s[:n] + s[n + 1:]
+
 
 # troca
 # seja uma string s
@@ -83,21 +95,24 @@ def apaga(s, n):
 # troca('a') -> 'a'
 # troca('ab') -> 'ba'
 def troca(s):
-  return 
+    return s if len(s) <= 1 else s[-1] + s[1:-1] + s[0]
+
 
 # string_splosion
 # string_splosion('Code') -> 'CCoCodCode'
 # string_splosion('abc') -> 'aababc'
 # string_splosion('ab') -> 'aab'
 def string_splosion(s):
-  return 
+    return ''.join([s[:x] for x in range(len(s))]) + s
+
 
 # make_tags
 # make_tags('i', 'Yay'), '<i>Yay</i>'
 # make_tags('i', 'Hello'), '<i>Hello</i>'
 # make_tags('cite', 'Yay'), '<cite>Yay</cite>'
 def make_tags(tag, word):
-  return 
+    return '<%s>%s</%s>' % (tag, word, tag)
+
 
 # roda2
 # rodar uma string s duas posições
@@ -105,7 +120,8 @@ def make_tags(tag, word):
 # left2('Hello') -> 'lloHe'
 # left2('Hi') -> 'Hi'
 def roda2(s):
-  return 
+    return s[2:] + s[:2] if len(s) > 2 else s
+
 
 # date_fashion
 # você e sua namorada(o) vão a um restaurante
@@ -122,7 +138,12 @@ def roda2(s):
 # date_fashion(5, 2) -> 0
 # date_fashion(5, 5) -> 1
 def date_fashion(eu, par):
-  return 
+    if par <= 2 or eu <= 2:
+        return 0
+    if par >= 8 or eu >= 8:
+        return 2
+    return 1
+
 
 # squirrel_play
 # os esquilos na FATEC brincam quando a temperatura está entre 60 e 90
@@ -133,7 +154,8 @@ def date_fashion(eu, par):
 # squirrel_play(95, False) -> False
 # squirrel_play(95, True) -> True
 def squirrel_play(temp, is_summer):
-  return 
+    return
+
 
 # pego_correndo
 # você foi pego correndo
@@ -147,9 +169,10 @@ def squirrel_play(temp, is_summer):
 # caso seja seu aniversário a velocidade pode ser 5 km/h maior em todos os casos
 # pego_correndo(60, False) -> 0
 # pego_correndo(65, False) -> 1
-# pego_correndo(65, True) -> 0 
+# pego_correndo(65, True) -> 0
 def pego_correndo(speed, is_birthday):
-  return
+    return
+
 
 # count_code
 # conta quantas vezes aparece 'code'
@@ -159,7 +182,8 @@ def pego_correndo(speed, is_birthday):
 # count_code('codexxcode') -> 2
 # count_code('cozexxcope') -> 2
 def count_code(s):
-  return
+    return
+
 
 # Fila de tijolos sem usar loops
 # queremos montar uma fila de tijolos de um tamanho denominado meta
@@ -170,7 +194,8 @@ def count_code(s):
 # fila_tijolos(3, 1, 9) -> False
 # fila_tijolos(3, 2, 10) -> True
 def fila_tijolos(n_peq, n_gra, meta):
-  return
+    return
+
 
 # busca (COMP 89 IME-USP)
 # Verifique quantas ocorrências de uma palavra há numa frase
@@ -178,27 +203,31 @@ def fila_tijolos(n_peq, n_gra, meta):
 # palavra = 'ana'
 # busca ('ana e mariana gostam de banana', 'ana') == 4
 def busca(frase, palavra):
-  return
+    return
+
 
 # zeros finais
 # Verifique quantos zeros há no final de um número inteiro positivo
 # Exemplo: 10010 tem 1 zero no fim e 908007000 possui três
 # Dica: talvez converter para string torne o exercício mais fácil
 def zf(n):
-  return
+    return
+
 
 # conta 2
 # Verifique quantas vezes o dígito 2 aparece entre 0 e n-1
 # Exemplo: para n = 20 o dígito 2 aparece duas vezes entre 0 e 19
 def conta2(n):
-  return
+    return
+
 
 # inicio em potencia de 2
 # Dado um número inteiro positivo n retorne a primeira potência de 2
 # que tenha o início igual a n
 # Exemplo: para n = 65 retornará 16 pois 2**16 = 65536
 def inip2(n):
-  return
+    return
+
 
 # O código abaixo avalia suas questões, favor não alterar ou decodificar
 from base64 import b64decode
